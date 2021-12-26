@@ -1,12 +1,12 @@
 (ql:quickload '(clish ust inferior-shell) :silent t)
 
-(defpackage ust/conda
+(defpackage ust/system
   (:use :cl :inferior-shell))
 
-(in-package ust/conda)
+(in-package ust/system)
 
 (defun install ()
-  (format t "Insatll conda~%")
+  (format t "Insatll basic applications for system~%")
   #-os-windows
   (let ((link #+X86-64 "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
               #+arm64 "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"))
