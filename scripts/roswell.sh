@@ -78,16 +78,24 @@ function install() {
     make
     make install
     cd $OLDPWD
+}
 
+function post-install() {
+    echo "post install"
     text-in-file ".roswell/bin" "$RC_FILE" || {
         echo "add roswell to PATH"
         printf "export PATH=$HOME/.roswell/bin:\$PATH" | tee -a "$RC_FILE"
     }
 
-}
+    export PATH=$HOME/.roswell/bin:$PATH
 
-function post-install() {
-    echo "post install"
+    ros setup
+
+    ros install Liszt21/Likit
+    ros install Liszt21/Clish
+    ros install Liszt21/Ust
+
+    ros install likit clish ust
 }
 
 function remove() {
