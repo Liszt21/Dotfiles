@@ -186,11 +186,15 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        position top
+        # position top
 }
 
 
 #----------------gaps------------------
+new_window none
+new_float normal
+hide_edge_borders both
+
 smart_gaps on
 smart_borders on
 gaps inner 5

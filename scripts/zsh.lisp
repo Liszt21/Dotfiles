@@ -1,7 +1,7 @@
-(ql:quickload '(clish ust))
+(ql:quickload '(clish likit))
 
 (defpackage ust.script
-  (:use :cl))
+  (:use :cl :likit))
 (in-package ust.script)
 
 (defun install ()

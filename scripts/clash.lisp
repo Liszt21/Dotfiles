@@ -1,11 +1,11 @@
 (ql:quickload '(clish likit inferior-shell) :silent t)
 
-(defpackage ust/conda
+(defpackage ust/clash
   (:use :cl :inferior-shell :likit))
-(in-package ust/conda)
+(in-package ust/clash)
 
 (defun install ()
-  (when (not (command-exists-p "conda"))
+  (when (not (command-exists-p "clash"))
     (format t "Insatll conda~%")
     #-os-windows
     (let ((link #+x86-64 "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"

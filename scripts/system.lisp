@@ -1,19 +1,36 @@
-(ql:quickload '(clish ust inferior-shell) :silent t)
+(ql:quickload '(clish likit inferior-shell str) :silent t)
 
 (defpackage ust/system
-  (:use :cl :inferior-shell))
-
+  (:use :cl :inferior-shell :likit))
 (in-package ust/system)
 
-(defun install ()
+(defun display-info ()
+  (when (command-exists-p "neofetch"))
+  (run/i "neofetch"))
+
+(defun setup ()
   (format t "Insatll basic applications for system~%")
-  #-os-windows
-  (let ((link #+X86-64 "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-              #+arm64 "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"))
-    (run/interactive `(wget ,link "-O" "/tmp/miniconda-installer.sh"))
-    (run/interactive "sh /tmp/miniconda-installer.sh -p ~/.miniconda -b")
-    (run/interactive "~/.miniconda/bin/conda init zsh bash")))
+
+  #+(or arch manjaro)
+  (let ((server "https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch"))
+    (when (not (run/ss "grep 'archlinuxcn' /etc/pacman.conf"))
+      (format nil "Adding archlinuxcn: ~A~%" server)
+      (run/i (format nil "sudo sed -i '$a [archlinuxcn]~%Server = ~A~%' /etc/pacman.conf" server))
+      (run/i "sudo pacman -Syy")
+      (run/i "sudo pacman -S archlinuxcn-keyring"))
+    (run/i "sudo pacman -S yay --needed --noconfirm"))
+
+  (run/i "sudo pacman -S firefox syncthing clash julia --needed ")
+  (run/i "yay -S syncthingtray visual-studio-code-bin --needed --noconfirm")
+
+  ;; set fonts
+  (run/i "ttf-fira-code adobe-source-code-pro-fonts --needed")
+
+  ;; applications
+  (run/i "yay wechat")
+  (run/i "yay -S baidunetdisk-bin --needed"))
 
 (clish:defcli main
-    (install #'install))
+    (setup #'setup))
 
+(display-info)
