@@ -11,9 +11,7 @@
       (run/i "wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash"))
 
     #+os-windows
-    (run/i "scoop install nvm")
-
-    (run/i "nvm install --lts")))
+    (run/i "scoop install nvm")))
 
 (clish:defcli main
     (install #'install))

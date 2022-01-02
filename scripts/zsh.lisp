@@ -1,8 +1,8 @@
 (ql:quickload '(clish likit))
 
-(defpackage ust.script
+(defpackage ust/zsh
   (:use :cl :likit))
-(in-package ust.script)
+(in-package ust/zsh)
 
 (defun install ()
   (format t "Insatll zsh~%"))

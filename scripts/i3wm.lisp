@@ -8,7 +8,7 @@
   #+os-unix
   (when (not (command-exists-p "i3"))
     #+(or arch manjaro)
-    (run/i "sudo pacman -S i3-gaps i3blocks i3lock i3status rofi picom dmenu feh polybar --noconfirm --needed")))
+    (run/i "sudo pacman -S i3-gaps i3blocks i3lock i3status rofi picom dmenu feh polybar arandr --noconfirm --needed")))
 
 
 (defun setup ()

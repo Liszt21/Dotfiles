@@ -5,8 +5,8 @@
 (in-package ust/system)
 
 (defun display-info ()
-  (when (command-exists-p "neofetch"))
-  (run/i "neofetch"))
+  (when (command-exists-p "neofetch")
+    (run/i "neofetch")))
 
 (defun setup ()
   (format t "Insatll basic applications for system~%")

@@ -16,10 +16,7 @@
       (run/i "~/.miniconda/bin/conda init zsh bash"))
 
     #+os-windows
-    (run/i "scoop install miniconda")
-
-    #+me
-    (run/i "conda install 3.8.7")))
+    (run/i "scoop install miniconda")))
 
 (clish:defcli main
     (install #'install))
