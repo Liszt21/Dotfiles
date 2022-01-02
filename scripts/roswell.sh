@@ -78,6 +78,12 @@ function install() {
     make
     make install
     cd $OLDPWD
+
+    text-in-file ".roswell/bin" "$RC_FILE" || {
+        echo "add roswell to PATH"
+        printf "export PATH=$HOME/.roswell/bin:\$PATH" | tee -a "$RC_FILE"
+    }
+
 }
 
 function post-install() {
