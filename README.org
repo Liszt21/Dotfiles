@@ -1,4 +1,19 @@
 #+TITLE: Dotfiles
 
+* Install
+#+begin_src shell
+  # Clone repo
+  git clone https://github.com/Liszt21/Dotfiles ~/.dotfiles
+#+end_src
+
+** Linux
+#+begin_src shell
+  curl -L https://raw.githubusercontent.com/Liszt21/Dotfiles/master/scripts/roswell.sh | bash
+#+end_src
+
+#+begin_src powershell
+  iwr -useb  https://raw.githubusercontent.com/Liszt21/Dotfiles/master/scripts/scoop.ps1 | iex
+#+end_src
+
 * Custom
 - gitconfig :: user name & email
