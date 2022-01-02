@@ -24,7 +24,7 @@
   (run/i "yay -S syncthingtray visual-studio-code-bin --needed --noconfirm")
 
   ;; set fonts
-  (run/i "ttf-fira-code adobe-source-code-pro-fonts --needed")
+  (run/i "yay -S ttf-fira-code adobe-source-code-pro-fonts --needed")
 
   ;; applications
   (run/i "yay wechat")
