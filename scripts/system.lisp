@@ -18,19 +18,31 @@
       (run/i (format nil "sudo sed -i '$a [archlinuxcn]~%Server = ~A~%' /etc/pacman.conf" server))
       (run/i "sudo pacman -Syy")
       (run/i "sudo pacman -S archlinuxcn-keyring"))
-    (run/i "sudo pacman -S yay --needed --noconfirm"))
+    (run/i "sudo pacman -S yay --needed --noconfirm")))
 
-  (run/i "sudo pacman -S firefox syncthing clash julia --needed ")
-  (run/i "yay -S syncthingtray visual-studio-code-bin --needed --noconfirm")
+  ;; (run/i "sudo pacman -S firefox syncthing clash julia --needed ")
+  ;; (run/i "yay -S syncthingtray visual-studio-code-bin --needed --noconfirm")
 
-  ;; set fonts
-  (run/i "yay -S ttf-fira-code adobe-source-code-pro-fonts --needed")
+  ;; ;; set fonts
+  ;; (run/i "yay -S ttf-fira-code adobe-source-code-pro-fonts --needed")
 
-  ;; applications
-  (run/i "yay wechat")
-  (run/i "yay -S baidunetdisk-bin --needed"))
+  ;; ;; applications
+  ;; (run/i "yay wechat")
+  ;; (run/i "yay -S baidunetdisk-bin --needed"))
+
+(defun update ()
+  (format nil "Updating~%")
+  #+(or arch manjaro)
+  (run/i "sudo pacman -Syu")
+
+  #-os-windows
+  (run/i "ros update likit emacy ust clish")
+
+  (when (command-exists-p "emacy")
+    (run/i "emacy update")))
 
 (clish:defcli main
+    (nil #'update)
     (setup #'setup))
 
 (display-info)

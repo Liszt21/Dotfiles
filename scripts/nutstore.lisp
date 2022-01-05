@@ -16,11 +16,11 @@
     (run/i "mkdir -p ~/.nutstore/dist && tar zxf /tmp/nutstore_bin.tar.gz -C ~/.nutstore/dist")
     (run/i "~/.nutstore/dist/bin/install_core.sh")))
 
-(defun remove ()
+(defun uninstall()
   (format t "Remove nutstore~%")
   (run/i "rm -rf ~/.nutstore"))
 
 (clish:defcli main
   (install #'install)
-  (remove #'remove))
+  (remove #'uninstall))
 
