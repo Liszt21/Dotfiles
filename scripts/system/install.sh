@@ -88,18 +88,4 @@ function post-install() {
     ros ~/.dotfiles/scripts/system.lisp setup
 }
 
-function uninstall() {
-    echo "uninstall"
-}
-
-case $1 in
-    "") install;;
-    "install") install;;
-    "uninstall") echo "Uninstall";;
-    "help") echo "Script for dotfiles";
-            echo "  install";
-            echo "  uninstall";
-            echo "  help";
-            echo "  ...       : run system.lisp";;
-    *) ros ~/.dotfiles/scripts/system.lisp $@;;
-esac
+install

@@ -7,10 +7,10 @@
 
 ** Linux
 #+begin_src shell
-  curl -L https://raw.githubusercontent.com/Liszt21/Dotfiles/master/scripts/system.sh | bash
+  curl -L https://raw.githubusercontent.com/Liszt21/Dotfiles/master/scripts/system/install.sh | bash
 #+end_src
 
 ** Windows
 #+begin_src powershell
-  iwr -useb  https://raw.githubusercontent.com/Liszt21/Dotfiles/master/scripts/system.ps1 | iex
+  iwr -useb  https://raw.githubusercontent.com/Liszt21/Dotfiles/master/scripts/system/install.ps1 | iex
 #+end_src

@@ -33,7 +33,7 @@
 (defun update ()
   (format nil "Updating~%")
   #+(or arch manjaro)
-  (run/i "sudo pacman -Syu")
+  (run/i "sudo pacman -Syu --noconfirm")
 
   #-os-windows
   (run/i "ros update likit emacy ust clish")
