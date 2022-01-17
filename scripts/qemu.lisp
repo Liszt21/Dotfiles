@@ -38,7 +38,7 @@
   (let ((folder (probe-file (merge-pathnames name home))))
     (when folder
       (run/i (format nil "qemu-system-~A -m ~A -smp 1 -nic user,model=virtio-net-pci -drive file=~Asystem~A.qcow2"
-                     arch memory folder (or (and shot (format nil "-~A" shot)) "") folder)))))
+                     arch memory folder (or (and shot (format nil "-~A" shot)) ""))))))
 
 (defun list-machines (&optional (home *home*))
   (loop for folder in (directory
