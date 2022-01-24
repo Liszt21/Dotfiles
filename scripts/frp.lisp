@@ -24,7 +24,7 @@
     (format t "Missing frps, installing...~%")
     (install)))
 
-(clish:defcli main
+(clish:defcli main (:docs "frp main")
     (install #'install)
     (serve #'serve))
 

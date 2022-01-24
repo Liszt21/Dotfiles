@@ -32,7 +32,7 @@
 
 (defun toggle (&optional (status t)))
 
-(clish:defcli main
+(clish:defcli main (:docs "proxy manager")
   (use #'use)
   (stop #'stop)
   (start #'start)

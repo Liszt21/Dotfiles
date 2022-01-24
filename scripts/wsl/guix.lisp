@@ -32,7 +32,7 @@
   (let ((init-file (path home "scripts" "wsl" "wsl-init")))
     (run/i (format nil "wsl -d Guix -u root -- sh ~A" init-file))))
 
-(clish:defcli main
+(clish:defcli main (:docs "guix for wsl")
   (install #'install)
   #+os-windows
   (init #'init))
