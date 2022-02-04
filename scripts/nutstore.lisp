@@ -8,7 +8,7 @@
   (format t "Install nutstore~%")
   #-os-windows
   (when (or force (not (probe-file #p"~/.nutstore/dist/bin/nutstore-pydaemon.py")))
-    #+(or arch manjaro) (run/i "sudo pacman -S python-gobject libnotify webkit2gtk libappindicator-gtk3 gfvs")
+    #+(or arch manjaro) (run/i "sudo pacman -S python-gobject libnotify webkit2gtk libappindicator-gtk3 gvfs")
     #+(or debian ubuntu) (run/i "sudo apt-get install  gvfs-bin python3-gi gir1.2-appindicator3-0.1")
     #+(or centos fedora) (run/i "sudo yum install gvfs libappindicator-gtk3 python3-gobject")
 
