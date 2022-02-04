@@ -6,27 +6,24 @@
                 :run/i))
 (in-package ust/qemu)
 
-(defparameter *home* #p"~/Qemu/")
+(defparameter *home* (pathname (format nil "~A/Qemu/" (or (uiop:getenv "HOME") "~"))))
 
 (defun install ()
   (format t "Insatll qemu~%")
   (when (not (command-exists-p "qemu-img"))
-    #+os-windows
-    (run/i (format nil "scoop install qemu"))
-    #+(or arch manjaro)
-    (run/i "sudo pacman -S qemu")))
+    #+os-windows (run/i (format nil "scoop install qemu"))
+    #+(or arch manjaro) (run/i "sudo pacman -S qemu")))
 
 (defun machine-info (name &key (home *home*))
   (let ((folder (probe-file (merge-pathnames name home))))
     (pairlis (list :shots) (list (mapcar #'pathname-name (directory (parse-namestring (format nil "~Asystem*.qcow2" folder))))))))
 
 (defun create-machine (name image &key (arch "x86_64") (home *home*))
-  (let ((folder (probe-file (merge-pathnames name home))))
-    (when (not folder)
-      (uiop:ensure-all-directories-exist (list folder))
-      (run/i (format nil "qemu-img create -f qcow2 ~Asystem.qcow2 157G" folder))
-      (run/i (format nil "qemu-system-~A -m 2048 -smp 1 -nic user,model=virtio-net-pci -boot menu=on.order=d -drive file=~Asystem.qcow2 -drive media=cdrom,file=~A"
-                     arch folder image)))))
+  (let ((file (pathname (format nil "~A/~A/system.qcow2" home name))))
+    (when (not (probe-file file))
+      (uiop:ensure-all-directories-exist (list file))
+      (run/i (format nil "qemu-img create -f qcow2 ~A 157G" file))
+      (run/i (format nil "qemu-system-~A -m 2048 -smp 1 -nic user,model=virtio-net-pci -boot menu=on,order=d -drive file=~A -drive media=cdrom,file=~A" arch file image)))))
 
 (defun delete-machine (name &key (home *home*))
   (let ((folder (probe-file (merge-pathnames name home))))
