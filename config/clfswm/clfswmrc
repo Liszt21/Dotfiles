@@ -1,9 +1,10 @@
 (in-package :clfswm)
 
+(defun show-rofi (&optional (mod "drun")) (do-shell (format nil "rofi -show ~A" mod)))
+
 (defun set-custom-main-keys ()
-  (define-main-key ("Super" "d") (lambda () (do-shell "rofi -drun show")))
-  (define-main-key ("d" :mod-1) (lambda () (do-shell "rofi -show drun"))))
+  (define-main-key ("d" :mod-1) 'show-rofi)
+  )
 
 (add-hook *binding-hook* 'set-custom-main-keys)
-
 ;;; vim: set ft=lisp lisp:
