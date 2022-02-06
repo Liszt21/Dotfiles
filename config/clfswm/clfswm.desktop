@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=clfswm
+Comment=A(nother) Common Lisp FullScreen Window Manager
+Exec=clfswm
+TryExec=clfswm
+Type=XSession
+X-LightDM-DesktopName=clfswm
+DesktopNames=clfswm
+Keywords=tiling;wm;windowmanager;window;manager;
