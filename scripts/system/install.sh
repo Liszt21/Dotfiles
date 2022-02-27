@@ -84,7 +84,7 @@ function post-install() {
     export PATH=$HOME/.roswell/bin:$PATH
 
     ros setup
-    ros install Liszt21/Likit Liszt21/Clish Liszt21/Ust likit clish ust
+    ros install Liszt21/Aliya likit clish ust aliya
     ros ~/.dotfiles/scripts/system.lisp setup
 }
 

@@ -44,7 +44,7 @@ function install() {
         ros setup
 
     }
-    ros install Liszt21/Clish Liszt21/Likit Liszt21/Ust clish likit ust
+    ros install Liszt21/Aliya likit clish ust
 
     if (!(Test-Path "$ENV:HOME/.dotfiles")) {
         Write-Output "Clone Dotfiles"
