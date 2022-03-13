@@ -3,3 +3,7 @@
 opt
 tmp
 scripts/demo
+
+*_checkpoints
+
+current
