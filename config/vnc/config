@@ -1,0 +1,5 @@
+#session=plasma
+session=xmonad
+geometry=1920x1080
+# localhost
+alwaysshared
