@@ -1,10 +1,30 @@
+;; -*-lisp-*-
+;;
+
 (in-package :clfswm)
 
 (defun show-rofi (&optional (mod "drun")) (do-shell (format nil "rofi -show ~A" mod)))
 
+(defun start-firefox () (do-shell "exec firefox"))
+
 (defun set-custom-main-keys ()
   (define-main-key ("d" :mod-1) 'show-rofi)
+  (define-main-key ("w" :mod-4) 'start-firefox)
   )
 
+(defun set-custom-second-keys () )
+
+;; startup
+(defun startup ()
+  (do-shell "exec ~/.config/polybar/launch.sh")
+  (do-shell "exec feh --bg-fill --randomize ~/Resource/Wallpapers/*")
+  (do-shell "exec tmux new -s syncthing -d \"syncthing\"")
+  (do-shell "exec tmux new -s clash -d \"clash\"")
+  )
+
+;; hooks
 (add-hook *binding-hook* 'set-custom-main-keys)
+(add-hook *binding-hook* 'set-custom-second-keys)
+
+(startup)
 ;;; vim: set ft=lisp lisp:

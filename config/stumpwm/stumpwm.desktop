@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=stumpwm
+Comment=A(nother) Common Lisp FullScreen Window Manager
+Exec=stumpwm
+TryExec=stumpwm
+Type=Application
+X-LightDM-DesktopName=stumpwm
+DesktopNames=stumpwm
+Keywords=tiling;wm;windowmanager;window;manager;commonlisp;
