@@ -1,6 +1,3 @@
-;; This is an operating system configuration generated
-;; by the graphical installer.
-
 (use-modules (gnu))
 (use-service-modules desktop networking ssh xorg)
 
@@ -19,10 +16,8 @@
                     '("wheel" "netdev" "audio" "video")))
                 %base-user-accounts))
   (packages
-	(map specification->package (list
-				      "bash" "vim" "emacs" "less" "tmux"
-				      "coreutils" "findutils" "diffutils" "grep"
-				      "i3-wm" "i3status" "dmenu" "st" "nss-certs")))
+   (map specification->package
+        (list "bash" "vim" "emacs" "less" "tmux" "coreutils" "findutils" "diffutils" "grep" "i3-wm" "i3status" "dmenu" "st" "nss-certs")))
   (services
     (append
       (list (service gnome-desktop-service-type)
@@ -32,11 +27,12 @@
               (xorg-configuration
                 (keyboard-layout keyboard-layout))))
       (modify-services %desktop-services
-     	(guix-service-type
-		config => (guix-configuration
-		(inherit config)
-		(substitute-urls '("https://mirror.sjtu.edu.cn/guix/")))))
-))
+       (guix-service-type config =>
+        (guix-configuration
+         (inherit config)
+         (substitute-urls
+          '("https://mirror.sjtu.edu.cn/guix/"
+            "https://ci.guix.gnu.org")))))))
   (bootloader
     (bootloader-configuration
       (bootloader grub-efi-bootloader)
