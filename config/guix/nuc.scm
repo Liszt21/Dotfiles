@@ -6,7 +6,7 @@
   (timezone "Asia/Shanghai")
   (keyboard-layout
     (keyboard-layout "us" "altgr-intl"))
-  (host-name "liszt-nuc")
+  (host-name "nuc-guix")
   (users (cons* (user-account
                   (name "liszt")
                   (comment "Liszt")

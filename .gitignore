@@ -7,3 +7,7 @@ scripts/demo
 *_checkpoints
 
 current
+
+*~undo-tree~
+*.log
+*.errors

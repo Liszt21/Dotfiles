@@ -1,9 +1,12 @@
 [credential]
         helper = manager-core
 [user]
+        signingkey = 0EEAFA02DA3C7513
         name = liszt21
-        email = 1832666492@qq.com
+        email = liszt21@qq.com
 [alias]
         lg = log --color --graph --pretty=format:'%C(bold red)%h%C(reset) - %C(bold green)(%cr)%C(bold blue)<%an>%C(reset) -%C(bold yellow)%d%C(reset) %s' --abbrev-commit
 [core]
         editor = vim
+[commit]
+        gpgsign = true
