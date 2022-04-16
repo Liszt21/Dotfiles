@@ -10,3 +10,9 @@
         editor = vim
 [commit]
         gpgsign = true
+[http]
+	sslverify = false
+	proxy = 192.168.3.106:1080
+[https]
+	sslverify = false
+	proxy = 192.168.3.106:1080

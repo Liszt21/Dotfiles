@@ -15,8 +15,15 @@
   (gnu home services shells)
   (gnu home services shepherd))
 
+(define @home (load "lisux/home.scm"))
+(display @home)
+(display "Hello Guile")
+(newline)
+
 (define @lisux-home "${HOME}/Lisux")
 (define @dotfiles "${HOME}/Dotfiles")
+
+(define machine-name (vector-ref (uname) 1))
 
 (define syncthing-service
   (shepherd-service
@@ -25,7 +32,7 @@
    (respawn? #t)
    (start #~(make-forkexec-constructor
              (list #$(file-append syncthing "/bin/syncthing")
-                   "--no-browser" "-logflags=3" "-logfile=~/.local/var/log/syncthing.log")))
+                   "--no-browser" "--logflags=3" "--logfile=~/.local/var/log/syncthing.log")))
    (stop #~(make-kill-destructor))))
 
 (home-environment
@@ -46,12 +53,11 @@
                "tigervnc-server"
                "nyxt"
                "qemu"
-               "rpm"
+
                ;; -- develop
                "make" "gcc" "gnupg"
                "cmake"
-               "conda"
-               "python" "python-pip"
+               "conda" "python" "python-pip"
                "node"
                "julia"
                "clojure"
@@ -75,9 +81,9 @@
                "blender")))
   (services
     (list
-     (simple-service
-      'guix-channels-config home-xdg-configuration-files-service-type
-      `(("guix/channels.scm" ,(local-file "config/guix/channels.scm"))))
+     ;; (simple-service
+     ;;  'guix-channels-config home-xdg-configuration-files-service-type
+     ;;  `(("guix/channels.scm" ,(local-file "config/guix/channels.scm"))))
      (service
       home-shepherd-service-type
       (home-shepherd-configuration
@@ -88,7 +94,7 @@
        home-bash-service-type
        (home-bash-configuration
          (environment-variables
-          `(("GUIX_BUILD_OPTIONS" . "\"--substitute-urls=https://mirror.sjtu.edu.cn/guix --load=path=~/Lisux\"")
+          `(("GUIX_BUILD_OPTIONS" . "\"--substitute-urls=https://mirror.sjtu.edu.cn/guix --load-path=~/Lisux\"")
             ("GTK_IM_MODULE" . "fcitx")))
          (aliases
            '(("grep" . "grep --color=auto")

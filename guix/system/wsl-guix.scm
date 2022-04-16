@@ -1,3 +1,4 @@
+(define-module (system wsl-guix))
 (use-modules
   (gnu)
   (guix profiles)

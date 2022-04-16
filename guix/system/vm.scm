@@ -1,3 +1,5 @@
+(define-module (system vm))
+
 ;; see https://git.sjtu.edu.cn/sjtug/guix/-/blob/master/gnu/system/examples/vm-image.tmpl
 (use-modules (gnu) (guix) (srfi srfi-1))
 (use-service-modules desktop mcron networking spice ssh xorg sddm)

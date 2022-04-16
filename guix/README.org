@@ -1,0 +1,3 @@
+#+TITLE: Lisux
+
+my guix config

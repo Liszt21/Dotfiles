@@ -1,3 +1,4 @@
+(define-module (system nuc-guix))
 (use-modules (gnu) (gnu system nss) (guix utils))
 (use-service-modules desktop sddm xorg ssh nix docker syncthing)
 (use-package-modules ssh certs gnome)
