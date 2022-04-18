@@ -15,11 +15,7 @@
   (gnu home services shells)
   (gnu home services shepherd))
 
-(define @home (load "lisux/home.scm"))
-(display @home)
-(display "Hello Guile")
-(newline)
-
+(define @home (load "guix/home.scm"))
 (define @lisux-home "${HOME}/Lisux")
 (define @dotfiles "${HOME}/Dotfiles")
 
@@ -38,12 +34,16 @@
 (home-environment
   (packages
     (map (compose list specification->package+output)
-         (list "git"
-               "recutils"
-               ;; "unrar"
+         (list ;; -- personal
+               ;; "roswell"
+
+               ;; -- basic
+               "git"
                "unzip"
                "zile"
+               "recutils"
                "syncthing"
+               "fish"
                "bash-completion"
 
                ;; -- fonts
@@ -55,8 +55,8 @@
                "qemu"
 
                ;; -- develop
-               "make" "gcc" "gnupg"
-               "cmake"
+               ;; "make" "gcc" "gnupg"
+               ;; "cmake"
                "conda" "python" "python-pip"
                "node"
                "julia"
@@ -65,7 +65,7 @@
                "go"
                "php"
                "perl"
-               "ghc"
+               ;; "ghc"
 
                ;; -- virtual machine
                "virt-manager"
@@ -94,8 +94,7 @@
        home-bash-service-type
        (home-bash-configuration
          (environment-variables
-          `(("GUIX_BUILD_OPTIONS" . "\"--substitute-urls=https://mirror.sjtu.edu.cn/guix --load-path=~/Lisux\"")
-            ("GTK_IM_MODULE" . "fcitx")))
+          `(("GTK_IM_MODULE" . "fcitx")))
          (aliases
            '(("grep" . "grep --color=auto")
              ("ll" . "ls -l")

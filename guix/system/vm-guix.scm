@@ -1,4 +1,4 @@
-(define-module (system vm))
+(define-module (system vm-guix))
 
 ;; see https://git.sjtu.edu.cn/sjtug/guix/-/blob/master/gnu/system/examples/vm-image.tmpl
 (use-modules (gnu) (guix) (srfi srfi-1))
@@ -30,7 +30,7 @@ accounts.\x1b[0m
          #:user "liszt"))
 
 (operating-system
-  (host-name "vm")
+  (host-name "vm-guix")
   (timezone "Asia/Shanghai")
   (locale "en_US.utf8")
   (keyboard-layout (keyboard-layout "us" "altgr-intl"))

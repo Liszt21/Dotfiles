@@ -1,0 +1,60 @@
+(define-module (packages rust-xyz)
+  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (guix build-system cargo)
+  #:use-module (guix download)
+  #:use-module (guix git-download)
+  #:use-module (guix packages)
+  #:use-module (guix utils)
+  #:use-module (gnu packages)
+  #:use-module (gnu packages admin)
+  #:use-module (gnu packages base)
+  #:use-module (gnu packages bash)
+  #:use-module (gnu packages compression)
+  #:use-module (gnu packages crates-io)
+  #:use-module (gnu packages crates-graphics)
+  #:use-module (gnu packages curl)
+  #:use-module (gnu packages documentation)
+  #:use-module (gnu packages fontutils)
+  #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages glib)
+  #:use-module (gnu packages gtk)
+  #:use-module (gnu packages ibus)
+  #:use-module (gnu packages icu4c)
+  #:use-module (gnu packages image)
+  #:use-module (gnu packages jemalloc)
+  #:use-module (gnu packages kde)
+  #:use-module (gnu packages linux)
+  #:use-module (gnu packages networking)
+  #:use-module (gnu packages ssh)
+  #:use-module (gnu packages pcre)
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages pulseaudio)
+  #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages rust)
+  #:use-module (gnu packages tls)
+  #:use-module (gnu packages version-control)
+  #:use-module (gnu packages webkit)
+  #:use-module (gnu packages xorg))
+
+(define-public starship
+  (package
+    (name "starship")
+    (version "1.5.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "starship" version))
+       (file-name
+        (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32
+         "1qz39mh5lprbqgdcq2yi2i2qvlkk6gkyzyvdrvaxb2mbhy8yhrm6"))))
+    (build-system cargo-build-system)
+    (arguments
+     `(#:cargo-inputs
+       ()))
+    (home-page "")
+    (synopsis "")
+    (description
+     "")
+    (license (list license:expat license:asl2.0))))

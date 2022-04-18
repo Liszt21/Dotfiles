@@ -1,4 +1,4 @@
+packages
+*-x86_64-linux
+*.errors
 .stack-work
-package/*
-
-*.lock
