@@ -1,0 +1,18 @@
+owner: Liszt21
+
+links:
+  - "./config/guix/channels.scm:~/.config/guix/channels.scm"
+  - [./config/guix/channels.scm, ~/.config/guix/channels.scm]
+
+a:
+  b:
+    c: ddd
+  e: em
+
+
+list:
+  - 1
+  - 2
+  - {
+  pp: dd
+  }
