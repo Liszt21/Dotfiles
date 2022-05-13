@@ -9,7 +9,9 @@
   (gnu packages)
   (gnu packages admin)
   (gnu packages syncthing)
+  (gnu packages package-management)
   (gnu services)
+  (gnu services nix)
   (guix gexp)
   (gnu home services)
   (gnu home services shells)
@@ -31,6 +33,16 @@
                    "--no-browser" "--logflags=3" "--logfile=~/.local/var/log/syncthing.log")))
    (stop #~(make-kill-destructor))))
 
+(define nix-service
+  (shepherd-service
+   (provision '(nix-daemon))
+   (documentation "Run nix daemon")
+   (respawn? #t)
+   (start #~(make-forkexec-constructor
+             (list #$(file-append nix "/bin/nix-daemon")
+                   "--substituters=\"https://mirrors.ustc.edu.cn/nix-channels/store https://cache.nixos.org/\"")))
+   (stop #~(make-kill-destructor))))
+
 (home-environment
   (packages
     (map (compose list specification->package+output)
@@ -45,9 +57,13 @@
                "syncthing"
                "fish"
                "bash-completion"
+               "nix"
 
                ;; -- fonts
-               "font-sarasa-gothic" "font-adobe-source-code-pro" "font-fira-code" "emacs-all-the-icons"
+               "font-sarasa-gothic"
+               "font-adobe-source-code-pro"
+               "font-fira-code"
+               "emacs-all-the-icons"
 
                ;; -- applications
                "tigervnc-server"
@@ -55,9 +71,9 @@
                "qemu"
 
                ;; -- develop
-               ;; "make" "gcc" "gnupg"
-               ;; "cmake"
-               "conda" "python" "python-pip"
+               "make" "gcc" "gnupg"
+               "cmake"
+               "conda" "python"
                "node"
                "julia"
                "clojure"
@@ -65,7 +81,7 @@
                "go"
                "php"
                "perl"
-               ;; "ghc"
+               "ghc"
 
                ;; -- virtual machine
                "virt-manager"
@@ -78,26 +94,29 @@
                "vlc"
                "mpv"
                "gimp"
-               "blender")))
+               "blender"
+	       )))
   (services
     (list
-     ;; (simple-service
-     ;;  'guix-channels-config home-xdg-configuration-files-service-type
-     ;;  `(("guix/channels.scm" ,(local-file "config/guix/channels.scm"))))
      (service
       home-shepherd-service-type
       (home-shepherd-configuration
        (shepherd shepherd)
        (services
-        (list syncthing-service))))
+        (list
+         syncthing-service
+         ;; nix-service
+         ))))
+     (service
+      home-fish-service-type
+      (home-fish-configuration
+       (environment-variables
+        `(("TEST" . "test")))
+       (config (list (local-file "config/fish/config.fish")))))
      (service
        home-bash-service-type
        (home-bash-configuration
-         (environment-variables
-          `(("GTK_IM_MODULE" . "fcitx")))
-         (aliases
-           '(("grep" . "grep --color=auto")
-             ("ll" . "ls -l")
-             ("ls" . "ls -p --color=auto")))
+         (environment-variables `(("GTK_IM_MODULE" . "fcitx")))
+         (aliases '())
          (bashrc (list (local-file "bashrc" "bashrc")))
          (bash-profile (list (local-file "bash_profile" "bash_profile"))))))))
