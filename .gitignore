@@ -4,6 +4,8 @@ opt
 tmp
 scripts/demo
 
+*__pycache__
+
 *_checkpoints
 
 current
