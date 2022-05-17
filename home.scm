@@ -56,7 +56,7 @@
                "recutils"
                "syncthing"
                "fish"
-               "bash-completion"
+               ;; "bash-completion"
                "nix"
 
                ;; -- fonts
@@ -66,35 +66,35 @@
                "emacs-all-the-icons"
 
                ;; -- applications
-               "tigervnc-server"
-               "nyxt"
-               "qemu"
+               ;; "tigervnc-server"
+               ;; "nyxt"
+               ;; "qemu"
 
                ;; -- develop
-               "make" "gcc" "gnupg"
-               "cmake"
-               "conda" "python"
-               "node"
-               "julia"
-               "clojure"
-               "nim"
-               "go"
-               "php"
-               "perl"
-               "ghc"
+               ;; "make" "gcc" "gnupg"
+               ;; "cmake"
+               ;; "conda" "python"
+               ;; "node"
+               ;; "julia"
+               ;; "clojure"
+               ;; "nim"
+               ;; "go"
+               ;; "php"
+               ;; "perl"
+               ;; "ghc"
 
                ;; -- virtual machine
-               "virt-manager"
-               "virt-viewer"
+               ;; "virt-manager"
+               ;; "virt-viewer"
 
                ;; -- emacs
                ;; "parinfer-rust"
 
                ;; -- tools
-               "vlc"
-               "mpv"
-               "gimp"
-               "blender"
+               ;; "vlc"
+               ;; "mpv"
+               ;; "gimp"
+               ;; "blender"
 	       )))
   (services
     (list
