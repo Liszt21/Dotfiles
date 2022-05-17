@@ -1,0 +1,14 @@
+#+TITLE: My rofi config
+
+* Usage
+
+#+begin_src shell
+mkdir -p ~/.config ~/.local/share/rofi
+ln -s ~/Dotfiles/config/rofi ~/.config/rofi
+ln -s ~/Dotfiles/config/rofi/themes ~/.local/share/rofi/themes
+#+end_src
+
+#+RESULTS:
+
+* Reference
+- [[https://github.com/catppuccin/rofi][catppuccin]]
