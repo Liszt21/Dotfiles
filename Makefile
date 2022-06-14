@@ -1,4 +1,4 @@
-include .env
+#include .envrc
 
 home:
 	guix home reconfigure home.scm

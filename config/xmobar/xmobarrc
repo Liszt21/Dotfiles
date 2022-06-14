@@ -1,5 +1,10 @@
 Config { overrideRedirect = False
-       , font     = "xft:iosevka-9"
+       , font     = "xft:Unifont"
+       , additionalFonts = [ "xft:Source Code Pro:regular:antialias=true"
+                           , "xft:Sarasa Gothic SC"
+                           , "xft:Unifont"
+                           , "xft:iosevka-9"
+                           ]
        , bgColor  = "#282c34"
        , fgColor  = "#ff6c6b"
        , position = TopW L 100 24

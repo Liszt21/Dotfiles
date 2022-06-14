@@ -5,6 +5,8 @@ import XMonad.Util.Ungrab
 
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Magnifier
+import XMonad.Layout.Spacing
+import XMonad.Layout.Gaps
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
@@ -14,6 +16,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 
 import XMonad.Util.Loggers
+import XMonad.Util.SpawnOnce
 
 main :: IO ()
 main = xmonad
@@ -25,14 +28,23 @@ main = xmonad
 myWorkspaces :: [String]
 myWorkspaces =
   [
-    "home"
-  , "web"
-  , "media"
-  , "chat"
-  , "work"
-  , "alpha"
-  , "beta"
-  , "gamma"
+  --   "home"
+  -- , "web"
+  -- , "media"
+  -- , "chat"
+  -- , "work"
+  -- , "alpha"
+  -- , "beta"
+  -- , "gamma"
+    "☰"
+  , "☱"
+  , "☲"
+  , "☳"
+  , "☯"
+  , "☴"
+  , "☵"
+  , "☶"
+  , "☷"
   ]
 
 myXmobarPP :: PP
@@ -63,13 +75,17 @@ myXmobarPP = def
     red      = xmobarColor "#ff5555" ""
     lowWhite = xmobarColor "#bbbbbb" ""
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayout = gaps [(L,0), (R,0), (U,0), (D,0)] $ spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10) True $
+  (tiled ||| Mirror tiled ||| Full ||| threeCol)
   where
-    threeCol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
+    threeCol = magnifiercz' 1.5 $ ThreeColMid nmaster delta ratio
     tiled = Tall nmaster delta ratio
     nmaster = 1
     ratio = 1/2
     delta = 3/100
+
+myStartupHook = do
+  spawnOnce "tmux new -d -s startup -n main sh ~/Dotfiles/config/startup.sh"
 
 myManageHook :: ManageHook
 myManageHook = composeAll
@@ -84,6 +100,7 @@ myConfig = def
     , layoutHook = myLayout
     , manageHook = myManageHook
     , workspaces = myWorkspaces
+    , startupHook = myStartupHook
     , terminal = "alacritty"
     , borderWidth = 1
     }

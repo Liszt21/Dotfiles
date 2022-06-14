@@ -56,13 +56,16 @@
                "recutils"
                "syncthing"
                "fish"
-               ;; "bash-completion"
                "nix"
+               ;; "bash-completion"
+               ;;
+               "glibc-locales"
 
                ;; -- fonts
                "font-sarasa-gothic"
                "font-adobe-source-code-pro"
                "font-fira-code"
+               "font-gnu-unifont"
                "emacs-all-the-icons"
 
                ;; -- applications
@@ -98,15 +101,15 @@
 	       )))
   (services
     (list
-     (service
-      home-shepherd-service-type
-      (home-shepherd-configuration
-       (shepherd shepherd)
-       (services
-        (list
-         syncthing-service
-         ;; nix-service
-         ))))
+     ;; (service
+     ;;  home-shepherd-service-type
+     ;;  (home-shepherd-configuration
+     ;;   (shepherd shepherd)
+     ;;   (services
+     ;;    (list
+     ;;     syncthing-service
+     ;;     ;; nix-service
+     ;;     ))))
      (service
       home-fish-service-type
       (home-fish-configuration

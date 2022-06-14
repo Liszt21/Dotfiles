@@ -1,5 +1,6 @@
 #session=plasma
 session=xmonad
-geometry=1920x1080
+geometry=2560x1440
+#geometry=1920x1080
 # localhost
 alwaysshared

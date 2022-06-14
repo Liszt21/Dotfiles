@@ -16,10 +16,11 @@
 
 ;; startup
 (defun startup ()
+  ;; (do-shell "exec feh --bg-fill --randomize ~/Resource/Wallpapers/*")
   (do-shell "exec ~/.config/polybar/launch.sh")
-  (do-shell "exec feh --bg-fill --randomize ~/Resource/Wallpapers/*")
-  (do-shell "exec tmux new -s syncthing -d \"syncthing\"")
-  (do-shell "exec tmux new -s clash -d \"clash\"")
+  (do-shell "exec wal -i ~/Sync/Wallpapaers")
+  (do-shell "exec tmux new -s syncthing -d syncthing")
+  (do-shell "exec tmux new -s clash -d clash")
   )
 
 ;; hooks
