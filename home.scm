@@ -7,13 +7,16 @@
 (use-modules
   (gnu home)
   (gnu packages)
+  (gnu packages base)
   (gnu packages admin)
   (gnu packages syncthing)
   (gnu packages package-management)
   (gnu services)
   (gnu services nix)
+  (gnu services mcron)
   (guix gexp)
   (gnu home services)
+  (gnu home services mcron)
   (gnu home services shells)
   (gnu home services shepherd))
 
@@ -22,6 +25,18 @@
 (define @dotfiles "${HOME}/Dotfiles")
 
 (define machine-name (vector-ref (uname) 1))
+
+(define updatedb-job
+  #~(job '(next-hour '(3))
+         (lambda ()
+           (execl (string-append #$findutils "/bin/updatedb")
+                  "updatedb"
+                  "--prunepaths=/tmp /var/tmp /gnu/store"))
+         "updatedb"))
+
+(define pywal-job
+  #~(job "0 0,30 * * *"
+         "wal -i ~/Sync/Wallpapers"))
 
 (define syncthing-service
   (shepherd-service
@@ -54,11 +69,12 @@
                "unzip"
                "zile"
                "recutils"
+               "findutils"
                "syncthing"
                "fish"
-               "nix"
+               "bat"
+               ;; "nix"
                ;; "bash-completion"
-               ;;
                "glibc-locales"
 
                ;; -- fonts
@@ -98,6 +114,7 @@
                ;; "mpv"
                ;; "gimp"
                ;; "blender"
+               "python-pywal"
 	       )))
   (services
     (list
@@ -111,6 +128,11 @@
      ;;     ;; nix-service
      ;;     ))))
      (service
+      home-mcron-service-type
+      (home-mcron-configuration
+       (jobs (list updatedb-job
+                   pywal-job))))
+     (service
       home-fish-service-type
       (home-fish-configuration
        (environment-variables
@@ -121,5 +143,5 @@
        (home-bash-configuration
          (environment-variables `(("GTK_IM_MODULE" . "fcitx")))
          (aliases '())
-         (bashrc (list (local-file "bashrc" "bashrc")))
-         (bash-profile (list (local-file "bash_profile" "bash_profile"))))))))
+         (bashrc (list (local-file "bashrc")))
+         (bash-profile (list (local-file "bash_profile"))))))))
