@@ -9,19 +9,15 @@
 
 (defun set-custom-main-keys ()
   (define-main-key ("d" :mod-1) 'show-rofi)
-  (define-main-key ("w" :mod-4) 'start-firefox)
-  )
+  (define-main-key ("w" :mod-4) 'start-firefox))
 
-(defun set-custom-second-keys () )
+(defun set-custom-second-keys ())
 
 ;; startup
 (defun startup ()
   ;; (do-shell "exec feh --bg-fill --randomize ~/Resource/Wallpapers/*")
-  (do-shell "exec ~/.config/polybar/launch.sh")
   (do-shell "exec wal -i ~/Sync/Wallpapaers")
-  (do-shell "exec tmux new -s syncthing -d syncthing")
-  (do-shell "exec tmux new -s clash -d clash")
-  )
+  (do-shell "exec tmux new -s syncthing -d syncthing"))
 
 ;; hooks
 (add-hook *binding-hook* 'set-custom-main-keys)

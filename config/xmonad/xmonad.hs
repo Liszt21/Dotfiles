@@ -28,14 +28,6 @@ main = xmonad
 myWorkspaces :: [String]
 myWorkspaces =
   [
-  --   "home"
-  -- , "web"
-  -- , "media"
-  -- , "chat"
-  -- , "work"
-  -- , "alpha"
-  -- , "beta"
-  -- , "gamma"
     "☰"
   , "☱"
   , "☲"
@@ -75,6 +67,7 @@ myXmobarPP = def
     red      = xmobarColor "#ff5555" ""
     lowWhite = xmobarColor "#bbbbbb" ""
 
+-- myLayout :: Layout
 myLayout = gaps [(L,0), (R,0), (U,0), (D,0)] $ spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10) True $
   (tiled ||| Mirror tiled ||| Full ||| threeCol)
   where
@@ -85,7 +78,7 @@ myLayout = gaps [(L,0), (R,0), (U,0), (D,0)] $ spacingRaw False (Border 10 0 10 
     delta = 3/100
 
 myStartupHook = do
-  spawnOnce "tmux new -d -s startup -n main sh ~/Dotfiles/config/startup.sh"
+  spawnOnce "tmux new -d -s xmonad-startup -n main sh ~/Dotfiles/config/startup.sh"
 
 myManageHook :: ManageHook
 myManageHook = composeAll
@@ -94,6 +87,7 @@ myManageHook = composeAll
   , isDialog            --> doFloat
   ]
 
+-- myConfig :: Config
 myConfig = def
     {
       modMask = mod1Mask
@@ -109,6 +103,7 @@ myConfig = def
       ("M-S-z", spawn "xscreensaver-command -lock")
     , ("M-S-=", unGrab *> spawn "scrot -s")
     , ("M-]", spawn "firefox")
-    , ("M-d", spawn "rofi -show drun")
+    , ("M-s", spawn "flameshot gui")
+    , ("M-d", spawn "rofi -show combi")
     ]
 

@@ -1,7 +1,8 @@
 configuration{
-    modi: "run,drun,window";
+    modi: "run,drun,combi,window";
     lines: 5;
     font: "JetBrainsMono Nerd Font 14";
+    combi-modi: "drun,window,run,ssh";
     show-icons: true;
     icon-theme: "Oranchelo";
     terminal: "st";
@@ -9,10 +10,11 @@ configuration{
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-drun: "   Apps ";
-    display-run: "   Run ";
-    display-window: " 﩯  window";
-    display-Network: " 󰤨  Network";
+    display-drun: "  Apps";
+    display-run: " Run";
+    display-window: "﩯  Window";
+    display-Network: "󰤨 Network";
+    display-combi: "☯ Combi";
     sidebar-mode: true;
 }
 
