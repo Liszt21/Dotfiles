@@ -1,3 +1,24 @@
+# utilities
+text-in-file() {
+    # $1 text
+    # $2 file
+    [ $1 ] && [ $2 ] && {
+        [ ! -e $2 ] && {
+            echo "File $2 not exist..."
+            exit
+        }
+        grep "$1" < "$2" >/dev/null 2>&1
+    }
+}
+
+command-exists() {
+	command -v "$@" >/dev/null 2>&1
+}
+
+try-source() {
+    if [ -f "$1" ]; then source "$1"; fi
+}
+
 load-conda() {
     if [ -d "$HOME/.anaconda" ];then
     CONDA_HOME="$HOME/.anaconda"
@@ -49,8 +70,12 @@ init-kit () {
     load-nvm
 }
 
-init-kit-if-not () {
+try-init-kit () {
     if [ ! $KIT_LOADED ]; then
         init-kit
     fi
+    command-exists conda && {
+        echo "conda activate"
+        conda activate
+    }
 }

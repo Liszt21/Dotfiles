@@ -8,8 +8,12 @@ export GPG_TTY=$(tty)
 export GIT_SSL_NO_VERIFY=1
 # source ~/.clishrc
 
+load-conda
+load-nvm
+command-exists conda && {
+    conda activate
+}
+
 # Hooks
 eval "$(starship init bash)"
 eval "$(direnv hook bash)"
-
-init-kit-if-not

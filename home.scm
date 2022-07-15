@@ -127,11 +127,11 @@
      ;;     syncthing-service
      ;;     ;; nix-service
      ;;     ))))
-     (service
-      home-mcron-service-type
-      (home-mcron-configuration
-       (jobs (list updatedb-job
-                   pywal-job))))
+     ;; (service
+     ;;  home-mcron-service-type
+     ;;  (home-mcron-configuration
+     ;;   (jobs (list updatedb-job
+     ;;               pywal-job))))
      (service
       home-fish-service-type
       (home-fish-configuration
@@ -142,6 +142,7 @@
        home-bash-service-type
        (home-bash-configuration
          (environment-variables `(("GTK_IM_MODULE" . "fcitx")))
-         (aliases '())
+         (aliases '(("spacemacs" "emacs --with-profile spacemacs")
+                    ("doomemacs" "emacs --with-profile doomemacs")))
          (bashrc (list (local-file "bashrc")))
          (bash-profile (list (local-file "bash_profile"))))))))
