@@ -85,7 +85,7 @@ function post-install() {
 
     ros setup
     ros install Liszt21/Aliya likit clish ust aliya
-    ros ~/.dotfiles/scripts/system.lisp setup
+    ros ~/.dotfiles/scripts/default.lisp setup
 }
 
 install

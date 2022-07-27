@@ -21,7 +21,7 @@
   (let ((server "https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch"))
     (when (not (run/i "grep 'archlinuxcn' /etc/pacman.conf" :on-error nil))
       (format nil "Adding archlinuxcn: ~A~%" server)
-      (run/i (format nil "sudo sed -i '$a [archlinuxcn]~%Server = ~A~%' /etc/pacman.conf" server))
+      (run/i (format nil "sudo sed -i '$a [archlinuxcn]\nServer = ~A\n' /etc/pacman.conf" server))
       (run/i "sudo pacman -Syy")
       (run/i "sudo pacman -S archlinuxcn-keyring yay"))
     (run/i "sudo pacman -S yay --needed --noconfirm")))
